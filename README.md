@@ -2,7 +2,7 @@
 Are still control characters used nowdays?
 ## Basic file with control characters
 ```
-user@minipc1:~/fred$ od -tu1 test
+user@minipc1:~/fred$ od -tu1 test.txt
 0000000  48  48  32 104 101 108 108 111   0  32 104 101 108 108 111  10
 0000020  48  49  32 104 101 108 108 111   1  32 104 101 108 108 111  10
 0000040  48  50  32 104 101 108 108 111   2  32 104 101 108 108 111  10
@@ -39,7 +39,7 @@ user@minipc1:~/fred$ od -tu1 test
 ```
 ## Same file in bash terminal
 ```
-user@minipc1:~/fred$ cat test
+user@minipc1:~/fred$ cat test.txt
 00 hello hello
 01 hello hello
 02 hello hello
@@ -81,7 +81,7 @@ user@minipc1:~/fred$ cat test
 
 ## Same file in od -a
 ```
-user@minipc1:~/fred$ od -a test
+user@minipc1:~/fred$ od -a test.txt
 0000000   0   0  sp   h   e   l   l   o nul  sp   h   e   l   l   o  nl
 0000020   0   1  sp   h   e   l   l   o soh  sp   h   e   l   l   o  nl
 0000040   0   2  sp   h   e   l   l   o stx  sp   h   e   l   l   o  nl
@@ -118,7 +118,7 @@ user@minipc1:~/fred$ od -a test
 ```
 ## Same file in od -c
 ```
-user@minipc1:~/fred$ od -c test
+user@minipc1:~/fred$ od -c test.txt
 0000000   0   0       h   e   l   l   o  \0       h   e   l   l   o  \n
 0000020   0   1       h   e   l   l   o 001       h   e   l   l   o  \n
 0000040   0   2       h   e   l   l   o 002       h   e   l   l   o  \n
@@ -230,4 +230,83 @@ Only 9 and 10 are interpreted by vim.
 31 hello hello
 127hello hello
 ```
-0,9,10,13 are interpreted by firefox.
+0,9,10,13 are interpreted by firefox (try yourself)..
+## Same file in less
+```
+user@minipc1:~/fred$ less test.txt
+"test.txt" may be a binary file.  See it anyway?y
+00 hello^@ hello
+01 hello^A hello
+02 hello^B hello
+03 hello^C hello
+04 hello^D hello
+05 hello^E hello
+06 hello^F hello
+07 hello^G hello
+08 hell hello
+09 hello         hello
+10 hello
+ hello
+11 hello^K hello
+12 hello^L hello
+13 hello^M hello
+14 hello^N hello
+15 hello^O hello
+16 hello^P hello
+17 hello^Q hello
+18 hello^R hello
+19 hello^S hello
+20 hello^T hello
+21 hello^U hello
+22 hello^V hello
+23 hello^W hello
+24 hello^X hello
+25 hello^Y hello
+26 hello^Z hello
+27 helloESC hello
+28 hello^\ hello
+29 hello^] hello
+30 hello^^ hello
+31 hello^_ hello
+127hello^? hello
+```
+8-10 and 27 are interpreted by less.
+## Same file througth tr
+```
+user@minipc1:~/fred$ tr "\000-\011,\013-\037" "-" < test.txt
+00 hello- hello
+01 hello- hello
+02 hello- hello
+03 hello- hello
+04 hello- hello
+05 hello- hello
+06 hello- hello
+07 hello- hello
+08 hello- hello
+09 hello- hello
+10 hello
+ hello
+11 hello- hello
+12 hello- hello
+13 hello- hello
+14 hello- hello
+15 hello- hello
+16 hello- hello
+17 hello- hello
+18 hello- hello
+19 hello- hello
+20 hello- hello
+21 hello- hello
+22 hello- hello
+23 hello- hello
+24 hello- hello
+25 hello- hello
+26 hello- hello
+27 hello- hello
+28 hello- hello
+29 hello- hello
+30 hello- hello
+31 hello- hello
+127hello hello
+```
+All can be catched by tr.
