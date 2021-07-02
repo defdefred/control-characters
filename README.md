@@ -77,6 +77,8 @@ user@minipc1:~/fred$ cat test
 31 hello hello
 127hello hello
 ```
+8 to 13 + 27 seems to be interpreted by bash
+
 ## Same file in od -a
 ```
 user@minipc1:~/fred$ od -a test
@@ -151,3 +153,81 @@ user@minipc1:~/fred$ od -c test
 0000760   3   1       h   e   l   l   o 037       h   e   l   l   o  \n
 0001000   1   2   7   h   e   l   l   o 177       h   e   l   l   o  \n
 ```
+0, 7 to 13 seems to have special meaning for unix.
+## Same file in vim
+```
+00 hello^@ hello↲
+01 hello^A hello↲
+02 hello^B hello↲
+03 hello^C hello↲
+04 hello^D hello↲
+05 hello^E hello↲
+06 hello^F hello↲
+07 hello^G hello↲
+08 hello^H hello↲
+09 hello→→→→→→→→ hello↲
+10 hello↲
+ hello↲
+11 hello^K hello↲
+12 hello^L hello↲
+13 hello^M hello↲
+14 hello^N hello↲
+15 hello^O hello↲
+16 hello^P hello↲
+17 hello^Q hello↲
+18 hello^R hello↲
+19 hello^S hello↲
+20 hello^T hello↲
+21 hello^U hello↲
+22 hello^V hello↲
+23 hello^W hello↲
+24 hello^X hello↲
+25 hello^Y hello↲
+26 hello^Z hello↲
+27 hello^[ hello↲
+28 hello^\ hello↲
+29 hello^] hello↲
+30 hello^^ hello↲
+31 hello^_ hello↲
+127hello^? hello↲
+```
+Only 9 and 10 are interpreted by vim.
+## Same file in Firefox
+```
+00 hello� hello
+01 hello hello
+02 hello hello
+03 hello hello
+04 hello hello
+05 hello hello
+06 hello hello
+07 hello hello
+08 hello hello
+09 hello	 hello
+10 hello
+ hello
+11 hello hello
+12 hello hello
+13 hello
+ hello
+14 hello hello
+15 hello hello
+16 hello hello
+17 hello hello
+18 hello hello
+19 hello hello
+20 hello hello
+21 hello hello
+22 hello hello
+23 hello hello
+24 hello hello
+25 hello hello
+26 hello hello
+27 hello hello
+28 hello hello
+29 hello hello
+30 hello hello
+31 hello hello
+127hello hello
+```
+0,9,10,13 are interpreted by firefox.
