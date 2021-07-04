@@ -1,5 +1,7 @@
 # Fun with control characters
 Are still control characters used nowdays?
+## Few documentation
+https://en.wikipedia.org/wiki/Control_character
 ## Basic file with control characters
 ```
 user@minipc1:~/fred$ od -tu1 test.txt
@@ -273,7 +275,7 @@ user@minipc1:~/fred$ less test.txt
 8-10 and 27 are interpreted by less.
 ## Same file througth tr
 ```
-user@minipc1:~/fred$ tr "\000-\011,\013-\037" "-" < test.txt
+user@minipc1:~/fred$ tr "\000-\011,\013-\037,\177" "-" < test.txt
 00 hello- hello
 01 hello- hello
 02 hello- hello
@@ -307,6 +309,6 @@ user@minipc1:~/fred$ tr "\000-\011,\013-\037" "-" < test.txt
 29 hello- hello
 30 hello- hello
 31 hello- hello
-127hello hello
+127hello- hello
 ```
 All can be catched by tr.
