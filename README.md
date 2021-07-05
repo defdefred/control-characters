@@ -79,8 +79,45 @@ user@minipc1:~/fred$ cat test.txt
 31 hello hello
 127hello hello
 ```
-8 to 13 + 27 seems to be interpreted by bash
-
+8 to 13 + 27 seems to be interpreted by cat
+```
+user@minipc1:~/fred$ cat -vT test.txt
+00 hello^@ hello
+01 hello^A hello
+02 hello^B hello
+03 hello^C hello
+04 hello^D hello
+05 hello^E hello
+06 hello^F hello
+07 hello^G hello
+08 hello^H hello
+09 hello^I hello
+10 hello
+ hello
+11 hello^K hello
+12 hello^L hello
+13 hello^M hello
+14 hello^N hello
+15 hello^O hello
+16 hello^P hello
+17 hello^Q hello
+18 hello^R hello
+19 hello^S hello
+20 hello^T hello
+21 hello^U hello
+22 hello^V hello
+23 hello^W hello
+24 hello^X hello
+25 hello^Y hello
+26 hello^Z hello
+27 hello^[ hello
+28 hello^\ hello
+29 hello^] hello
+30 hello^^ hello
+31 hello^_ hello
+127hello^? hello
+```
+Only is interpreted by cat -vT
 ## Same file in od -a
 ```
 user@minipc1:~/fred$ od -a test.txt
@@ -167,7 +204,7 @@ user@minipc1:~/fred$ od -c test.txt
 06 hello^F hello↲
 07 hello^G hello↲
 08 hello^H hello↲
-09 hello→→→→→→→→ hello↲
+09 hello→→ hello↲
 10 hello↲
  hello↲
 11 hello^K hello↲
@@ -194,6 +231,14 @@ user@minipc1:~/fred$ od -c test.txt
 127hello^? hello↲
 ```
 Only 9 and 10 are interpreted by vim.
+TAB can be managed with `set listchars` and `set tabstop`.
+```
+set encoding=utf-8↲
+set showbreak=↪↲
+set listchars=tab:→→,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨↲
+set list↲
+set tabstop=2↲
+```
 ## Same file in Firefox
 ```
 00 hello� hello
