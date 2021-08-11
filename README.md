@@ -39,6 +39,7 @@ user@minipc1:~/fred$ od -tu1 test.txt
 0000760  51  49  32 104 101 108 108 111  31  32 104 101 108 108 111  10
 0001000  49  50  55 104 101 108 108 111 127  32 104 101 108 108 111  10
 ```
+Can be found here: https://github.com/defdefred/control-characters/raw/main/test.txt
 ## Same file in bash terminal
 ```
 user@minipc1:~/fred$ cat test.txt
@@ -117,7 +118,7 @@ user@minipc1:~/fred$ cat -vT test.txt
 31 hello^_ hello
 127hello^? hello
 ```
-Only is interpreted by cat -vT
+Only 10 is interpreted by cat -vT
 ## Same file in od -a
 ```
 user@minipc1:~/fred$ od -a test.txt
@@ -238,6 +239,80 @@ set showbreak=↪↲
 set listchars=tab:→→,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨↲
 set list↲
 set tabstop=2↲
+```
+## More fun with vim
+```
+00 hello^@ hello
+01 hello␁ hello
+02 hello␂ hello
+03 hello␃ hello
+04 hello␄ hello
+05 hello␅ hello
+06 hello␆ hello
+07 hello␇ hello
+08 hello␈ hello
+09 hello␉ hello
+10 hello
+ hello
+11 hello␋ hello
+12 hello␌ hello
+13 hello␍ hello
+14 hello␎ hello
+15 hello␏ hello
+16 hello␐ hello
+17 hello␑ hello
+18 hello␒ hello
+19 hello␓ hello
+20 hello␔ hello
+21 hello␕ hello
+22 hello␖ hello
+23 hello␗ hello
+24 hello␘ hello
+25 hello␙ hello
+26 hello␚ hello
+27 hello␛ hello
+28 hello␜ hello
+29 hello␝ hello
+30 hello␞ hello
+31 hello␟ hello
+127hello␡ hello
+```
+Quite any character can be managed by "consealing" in `.vimrc`. Only 0 and 10 are not working. You can use any unicode glyphe, I choose the https://en.wikipedia.org/wiki/Control_Pictures
+```
+set encoding=utf-8
+syntax match Entity "^A" conceal cchar=␁
+syntax match Entity "^B" conceal cchar=␂
+syntax match Entity "^C" conceal cchar=␃
+syntax match Entity "^D" conceal cchar=␄
+syntax match Entity "^E" conceal cchar=␅
+syntax match Entity "^F" conceal cchar=␆
+syntax match Entity "^G" conceal cchar=␇
+syntax match Entity "^H" conceal cchar=␈
+syntax match Entity "   " conceal cchar=␉
+syntax match Entity "^K" conceal cchar=␋
+syntax match Entity "^L" conceal cchar=␌
+syntax match Entity "^M" conceal cchar=␍
+syntax match Entity "^N" conceal cchar=␎
+syntax match Entity "^O" conceal cchar=␏
+syntax match Entity "^P" conceal cchar=␐
+syntax match Entity "^Q" conceal cchar=␑
+syntax match Entity "^R" conceal cchar=␒
+syntax match Entity "^S" conceal cchar=␓
+syntax match Entity "^T" conceal cchar=␔
+syntax match Entity "^U" conceal cchar=␕
+syntax match Entity "^V" conceal cchar=␖
+syntax match Entity "^W" conceal cchar=␗
+syntax match Entity "^X" conceal cchar=␘
+syntax match Entity "^Y" conceal cchar=␙
+syntax match Entity "^Z" conceal cchar=␚
+syntax match Entity "^[" conceal cchar=␛
+syntax match Entity "^\" conceal cchar=␜
+syntax match Entity "^]" conceal cchar=␝
+syntax match Entity "^^" conceal cchar=␞
+syntax match Entity "^_" conceal cchar=␟
+syntax match Entity "^?" conceal cchar=␡
+set conceallevel=1
+set concealcursor=nc
 ```
 ## Same file in Firefox
 ```
