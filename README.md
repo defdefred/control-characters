@@ -277,7 +277,7 @@ set tabstop=2↲
 31 hello␟ hello
 127hello␡ hello
 ```
-Quite any character can be managed by "consealing" in `.vimrc`. Only 0 and 10 are not working. You can use any unicode glyphe, I choose the https://en.wikipedia.org/wiki/Control_Pictures
+Quite any character can be managed by "consealing" in `.vimrc`. 10 is not working. 0 is not working from .vimrc but OK from vim command line (https://github.com/vim/vim/issues/8754). You can use any unicode glyphe, I choose the https://en.wikipedia.org/wiki/Control_Pictures
 ```
 set encoding=utf-8
 syntax match Entity "^A" conceal cchar=␁
